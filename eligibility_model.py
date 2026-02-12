@@ -15,11 +15,11 @@ def model():
     with col1:
         purchase_frequency = st.number_input('Purchase Frequency', min_value=0, step=1, format='%d')
     with col2:
-        total_purchase_value = st.number_input('Total Purchase Value (USD)', min_value=0, step=1000, format='%d')
+        total_spending = st.number_input('Total Spending (USD)', min_value=0, step=1000, format='%d')
 
-    if purchase_frequency == 0 and total_purchase_value == 0:
+    if purchase_frequency == 0 and total_spending == 0:
         customer_segment = 'Visitor'
-    elif total_purchase_value < 2600:
+    elif total_spending < 2600:
         if purchase_frequency == 1:
             customer_segment = 'Bronze'
         else:
