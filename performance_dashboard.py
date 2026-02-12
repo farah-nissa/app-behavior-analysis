@@ -96,7 +96,7 @@ def dashboard():
         """, unsafe_allow_html=True)
     with col5:
         change_color = 'red' if revenue_change < 0 else 'cornflowerblue'
-        revenue_display = f"${monthly_revenue/1000:.1f}K"
+        revenue_display = f"${monthly_revenue/1000:.0f}K"
         st.markdown(f"""
         <div style='background-color:#E1E8F0; padding:10px; border-radius:10px;'>
         <h6 style='color:#6c757d;'>Revenue</h6>
