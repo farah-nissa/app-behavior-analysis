@@ -24,9 +24,7 @@ orders_by_month = df_orders.groupby('Month')['Quantity'].sum().reset_index()
 
 def dashboard():
     with st.container():
-        if 'config_set' not in st.session_state:
-            st.set_page_config(layout="wide")
-            st.session_state.config_set = True
+        st.markdown('<div style="border: 2px solid #E1E8F0; border-radius: 10px; padding: 20px;">', unsafe_allow_html=True)
             
         st.subheader("App Performance Dashboard")
         # Month slicer
