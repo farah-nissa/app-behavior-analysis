@@ -166,3 +166,5 @@ def dashboard():
         fig3.update_layout(yaxis_range=[0, top_categories_revenue['Total Price'].max() * 1.1], coloraxis_showscale=False)
         fig3.update_xaxes(tickangle=0, tickfont=dict(size=8))
         st.plotly_chart(fig3, use_container_width=True)
+    
+    st.write('Sessions, Users, Purchases, Sales. Action-level, user-level, product-level.')
