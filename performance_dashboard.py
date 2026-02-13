@@ -5,6 +5,7 @@ import matplotlib.pyplot as plt
 import seaborn as sns
 import plotly.express as px
 import plotly.graph_objects as go
+import textwrap
 
 st.set_page_config(layout="wide")
 st.markdown("""
@@ -151,13 +152,17 @@ def dashboard():
     col1, col2 = st.columns(2)
     with col1:
         top_categories_quantity = df_orders_latest.groupby('Category')['Quantity'].sum().reset_index().sort_values('Quantity', ascending=False).head(10)
+        top_categories_quantity['Category'] = top_categories_quantity['Category'].apply(lambda x: x.replace(' ', '<br>'))
         fig2 = px.bar(top_categories_quantity, x='Category', y='Quantity', title='Top Categories by Units Sold', text='Quantity', height=450, color='Quantity', color_continuous_scale=px.colors.sequential.Blues[2:])
         fig2.update_traces(textposition='outside')
-        fig2.update_layout(yaxis_range=[0, top_categories_quantity['Quantity'].max() * 1.1], coloraxis_showscale=False)  
+        fig2.update_layout(yaxis_range=[0, top_categories_quantity['Quantity'].max() * 1.1], coloraxis_showscale=False)
+        fig2.update_xaxes(tickangle=0, tickfont=dict(size=8))
         st.plotly_chart(fig2, use_container_width=True)
     with col2:
         top_categories_revenue = df_orders_latest.groupby('Category')['Total Price'].sum().reset_index().sort_values('Total Price', ascending=False).head(10)
+        top_categories_revenue['Category'] = top_categories_revenue['Category'].apply(lambda x: x.replace(' ', '<br>'))
         fig3 = px.bar(top_categories_revenue, x='Category', y='Total Price', title='Top Categories by Revenue', text='Total Price', height=450, color='Total Price', color_continuous_scale=px.colors.sequential.Blues[2:])
         fig3.update_traces(textposition='outside')
-        fig3.update_layout(yaxis_range=[0, top_categories_revenue['Total Price'].max() * 1.1], coloraxis_showscale=False)  
+        fig3.update_layout(yaxis_range=[0, top_categories_revenue['Total Price'].max() * 1.1], coloraxis_showscale=False)
+        fig3.update_xaxes(tickangle=0, tickfont=dict(size=8))
         st.plotly_chart(fig3, use_container_width=True)
