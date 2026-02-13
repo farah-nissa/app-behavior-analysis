@@ -11,7 +11,7 @@ st.set_page_config(layout="centered")
 st.markdown("""
 <style>
 .block-container {
-    max-width: 75%;
+    max-width: 70%;
 }
 </style>
 """, unsafe_allow_html=True)
