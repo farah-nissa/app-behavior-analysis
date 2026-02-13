@@ -23,6 +23,10 @@ df_orders['Month'] = df_orders['DateTime'].dt.to_period('M')
 orders_by_month = df_orders.groupby('Month')['Quantity'].sum().reset_index()
 
 def dashboard():
+    if 'config_set' not in st.session_state:
+        st.set_page_config(layout="wide")
+        st.session_state.config_set = True
+        
     st.subheader("App Performance Dashboard")
     # Month slicer
     months = df['DateTime'].dt.to_period('M').unique()
