@@ -26,10 +26,10 @@ def dashboard():
     if 'config_set' not in st.session_state:
         st.set_page_config(layout="wide")
         st.session_state.config_set = True
-
+        
     st.subheader("App Performance Dashboard")
     # Month slicer
-    months = df['DateTime'].dt.to_period('M').unique().sort_values()
+    months = sorted(df['DateTime'].dt.to_period('M').unique())
     default_month = pd.Period('2019-10', freq='M')
     selected_month = st.selectbox('Select Month', months, index=list(months).index(default_month), key='unique_month_selector')
 
